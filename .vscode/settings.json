@@ -1,0 +1,7 @@
+{
+  "go.testFlags": ["-race", "-count=1"],
+  "editor.formatOnSave": true,
+  "[go]": {
+    "editor.defaultFormatter": "golang.go"
+  }
+}

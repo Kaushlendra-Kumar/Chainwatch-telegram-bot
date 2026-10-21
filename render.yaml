@@ -1,0 +1,28 @@
+services:
+  - type: web
+    name: chainwatch-bot
+    runtime: docker
+    plan: free
+    region: singapore
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /healthz
+    autoDeploy: true
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: BOT_MODE
+        value: webhook
+      - key: LOG_LEVEL
+        value: info
+      - key: TELEGRAM_BOT_TOKEN
+        sync: false
+      - key: DATABASE_URL
+        sync: false
+      - key: ETHERSCAN_API_KEY
+        sync: false
+      - key: COINGECKO_API_KEY
+        sync: false
+      - key: SOLANA_RPC_URL
+        sync: false
+      - key: WEBHOOK_SECRET
+        generateValue: true

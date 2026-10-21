@@ -1,0 +1,8 @@
+# Copy to .dev.vars for `npm run dev`. Never commit .dev.vars.
+# Use a separate DEV bot from @BotFather here, not the production one.
+TELEGRAM_BOT_TOKEN=
+WEBHOOK_SECRET=any-random-string
+ETHERSCAN_API_KEY=
+COINGECKO_API_KEY=
+# SOLANA_RPC_URL=https://mainnet.helius-rpc.com/?api-key=YOUR_KEY
+LOG_LEVEL=debug

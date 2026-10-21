@@ -1,0 +1,33 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "chainwatch-bot",
+  "main": "src/index.ts",
+  "compatibility_date": "2025-10-01",
+  "observability": { "enabled": true },
+  "triggers": {
+    // Every minute: price alerts, wallet polling, notifications.
+    // Daily: delete old events and orphaned wallets.
+    "crons": ["* * * * *", "17 3 * * *"]
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "chainwatch",
+      "database_id": "98aa2692-0324-4f0b-9b70-55ed0684517a",
+      "migrations_dir": "migrations"
+    }
+  ],
+  "secrets": { "required": ["TELEGRAM_BOT_TOKEN", "WEBHOOK_SECRET", "ETHERSCAN_API_KEY", "COINGECKO_API_KEY"] },
+  "vars": {
+    // Free Etherscan tier: eth, polygon, arbitrum, linea. bsc and base need a paid plan.
+    "EVM_CHAINS": "eth,polygon,arbitrum",
+    "MAX_ALERTS_PER_USER": "20",
+    "MAX_WALLETS_PER_USER": "10",
+    "NOTIFY_BATCH_LIMIT": "5",
+    "EVENT_RETENTION_DAYS": "14",
+    "LOG_LEVEL": "info"
+  }
+  // Secrets (npx wrangler secret put <NAME>):
+  //   TELEGRAM_BOT_TOKEN, WEBHOOK_SECRET, ETHERSCAN_API_KEY,
+  //   COINGECKO_API_KEY, SOLANA_RPC_URL (optional, e.g. a Helius URL)
+}
