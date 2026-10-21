@@ -10,7 +10,7 @@ src/
 ├── bot.ts        command handlers (internal/bot)
 ├── jobs.ts       alerts, wallet polling, notifications (internal/worker)
 ├── store.ts      D1 / SQLite queries (internal/store)
-├── price/        Binance, CoinGecko, caching service (internal/price)
+├── price/        OKX, CoinGecko, caching service (internal/price)
 ├── chain/        Ethereum/Polygon/Arbitrum, Bitcoin, Solana (internal/chain)
 ├── telegram.ts   Bot API client
 ├── chart.ts      PNG charts via QuickChart
@@ -29,11 +29,12 @@ scripts/poll.mjs  local development without a public URL
 | PostgreSQL on Neon | Cloudflare D1 (SQLite), same tables |
 | Alerts checked every 30 s | Checked every minute (the shortest cron interval) |
 | go-chart renders PNGs | QuickChart renders the PNG, the bot uploads it |
+| Binance prices | OKX prices: Binance returns 403 to Cloudflare's network |
 
 The free plan allows **50 outbound requests per invocation**. Every cron run
 gets a budget of 48:
 
-1. price alerts go first (usually one Binance call, plus one message per fired alert);
+1. price alerts go first (usually one OKX call, plus one message per fired alert);
 2. wallets are polled least-recently-polled first, keeping 8 requests back for messages;
 3. new transfers are sent; if the budget can't cover a wallet's messages, its
    events are put back and go out next minute.

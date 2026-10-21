@@ -14,7 +14,7 @@ export interface Env {
   SOLANA_RPC_URL?: string;
   EVM_CHAINS?: string;
   BITCOIN_API_URL?: string;
-  BINANCE_BASE_URL?: string;
+  OKX_BASE_URL?: string;
   COINGECKO_BASE_URL?: string;
   TELEGRAM_API_URL?: string;
   MAX_ALERTS_PER_USER?: string;
@@ -31,7 +31,7 @@ export interface Config {
   etherscanKey: string;
   evmChains: string[];
   coingeckoKey: string;
-  binanceURL: string;
+  okxURL: string;
   coingeckoURL: string;
   bitcoinURL: string;
   solanaRPC: string;
@@ -61,7 +61,7 @@ export function loadConfig(env: Env): Config {
       .map((s) => s.trim().toLowerCase())
       .filter(Boolean),
     coingeckoKey: str(env.COINGECKO_API_KEY, ""),
-    binanceURL: trimSlash(str(env.BINANCE_BASE_URL, "https://data-api.binance.vision")),
+    okxURL: trimSlash(str(env.OKX_BASE_URL, "https://www.okx.com")),
     coingeckoURL: trimSlash(str(env.COINGECKO_BASE_URL, "https://api.coingecko.com/api/v3")),
     bitcoinURL: trimSlash(str(env.BITCOIN_API_URL, "https://mempool.space/api")),
     solanaRPC: str(env.SOLANA_RPC_URL, "https://api.mainnet-beta.solana.com"),

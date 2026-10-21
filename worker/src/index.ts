@@ -4,7 +4,7 @@ import { NotFoundError } from "./errors";
 import { Budget, Http } from "./http";
 import { dispatchEvents, pollWallets, runAlerts } from "./jobs";
 import { newLogger } from "./log";
-import { Binance } from "./price/binance";
+import { OKX } from "./price/okx";
 import { CoinGecko } from "./price/coingecko";
 import { PriceService } from "./price/service";
 import { validSymbol } from "./price/types";
@@ -25,7 +25,7 @@ function services(env: Env, cfg: Config, budget: Budget, component: string) {
   const http = new Http(budget);
   const store = new Store(env.DB as unknown as Database);
   const gecko = new CoinGecko(http, cfg.coingeckoURL, cfg.coingeckoKey);
-  const prices = new PriceService(new Binance(http, cfg.binanceURL), gecko, gecko, log);
+  const prices = new PriceService(new OKX(http, cfg.okxURL), gecko, gecko, log);
   const chains = buildChains(cfg, http, log);
   const tg = new Telegram(http, cfg.botToken, cfg.telegramAPI);
   return { log, http, store, prices, chains, tg };

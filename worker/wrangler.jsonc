@@ -17,7 +17,7 @@
       "migrations_dir": "migrations"
     }
   ],
-  "secrets": { "required": ["TELEGRAM_BOT_TOKEN", "WEBHOOK_SECRET", "ETHERSCAN_API_KEY", "COINGECKO_API_KEY"] },
+  "secrets": { "required": ["TELEGRAM_BOT_TOKEN", "WEBHOOK_SECRET", "ETHERSCAN_API_KEY"] },
   "vars": {
     // Free Etherscan tier: eth, polygon, arbitrum, linea. bsc and base need a paid plan.
     "EVM_CHAINS": "eth,polygon,arbitrum",
